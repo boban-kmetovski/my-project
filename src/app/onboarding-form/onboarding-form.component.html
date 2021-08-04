@@ -1,1 +1,53 @@
-<p>onboarding-form works!</p>
+<br>
+<div class="container-sm">
+    <!-- Authentication/contact info details -->
+    <div *ngIf="authenticationCompleted">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)" ngNativeValidate>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                id="email" 
+                name="email" 
+                type="email" 
+                placeholder="example@domain.com"
+                class="form-control" 
+                [(ngModel)]="authenticationData.email"
+                required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input 
+                id="phone" 
+                name="phone" 
+                type="tel" 
+                placeholder="07# ###-###"
+                class="form-control"
+                [(ngModel)]="authenticationData.phone"
+                required>
+            </div>
+            <div class="form-group">
+                <label for="embg">Personal number</label>
+                <input 
+                id="embg"  
+                name="embg" 
+                type="text" 
+                placeholder="ddmmyyyxxxyyy"
+                class="form-control"
+                [(ngModel)]="authenticationData.embg"
+                required>
+            </div>
+
+            <button class="btn btn-primary">Ok</button>
+        </form>
+    </div>
+    <div *ngIf="!authenticationCompleted">
+        <h4>User: <b>Boban Kmetovski</b></h4>
+        <h4>email: <b>{{authenticationData.email}}</b></h4>
+    </div>
+</div>
+
+
+<!-- <br> form values -->
+<!-- <br> {{ form.value | json }} -->
+<!-- <br> AuthenticationData values -->
+<!-- <br> {{ authenticationData | json }} -->
