@@ -1,8 +1,8 @@
 <br>
-<div class="container-sm">
+<div class="container-sm" style="background-color: cornsilk; max-width: 75%;">
     <!-- Authentication/contact info details -->
     <div *ngIf="authenticationCompleted">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)" ngNativeValidate>
+        <form #form1="ngForm" (ngSubmit)="onSubmit(form1)">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input 
@@ -12,7 +12,10 @@
                 placeholder="example@domain.com"
                 class="form-control" 
                 [(ngModel)]="authenticationData.email"
-                required>
+                [class.field-error]="form1.submitted && email.invalid"
+                required
+                pattern=".*@.*.com"
+                #email="ngModel">
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
@@ -23,7 +26,10 @@
                 placeholder="07# ###-###"
                 class="form-control"
                 [(ngModel)]="authenticationData.phone"
-                required>
+                pattern="07[0-9] [0-9][0-9][0-9]-[0-9][0-9][0-9]"
+                required
+                #phone="ngModel"
+                [class.field-error]="form1.submitted && phone.invalid">
             </div>
             <div class="form-group">
                 <label for="embg">Personal number</label>
@@ -34,15 +40,42 @@
                 placeholder="ddmmyyyxxxyyy"
                 class="form-control"
                 [(ngModel)]="authenticationData.embg"
-                required>
+                required
+                minlength="13"
+                maxlength="13"
+                #embg="ngModel"
+                [class.field-error]="form1.submitted && embg.invalid">
             </div>
-
+            <div *ngIf="form1.submitted && form1.invalid">Please input the fields marked with red</div>
             <button class="btn btn-primary">Ok</button>
         </form>
     </div>
     <div *ngIf="!authenticationCompleted">
         <h4>User: <b>Boban Kmetovski</b></h4>
         <h4>email: <b>{{authenticationData.email}}</b></h4>
+    </div>
+    <!-- Section #2:  -->
+    <div *ngIf="section2">
+        <h3>section2</h3>
+        <div *ngIf="!section3">
+            <button (click)="completeSection2()">continue</button>
+        </div> 
+    </div>
+    <!-- Section #3:  -->
+    <div *ngIf="section3">
+        <h3>section3</h3>
+        <div *ngIf="!section4">
+            <button (click)="completeSection3()">continue</button>
+        </div>     </div>
+    <!-- Section #4:  -->
+    <div *ngIf="section4">
+        <h3>section4</h3>
+        <div *ngIf="!section5">
+            <button (click)="completeSection4()">continue</button>
+        </div>     </div>
+    <!-- Section #5:  -->
+    <div *ngIf="section5">
+        <h3>section5</h3>
     </div>
 </div>
 
