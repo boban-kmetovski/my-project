@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 import { AppComponent } from './app.component';
 import { OnboardingFormComponent } from './onboarding-form/onboarding-form.component';
@@ -12,7 +16,9 @@ import { OnboardingFormComponent } from './onboarding-form/onboarding-form.compo
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

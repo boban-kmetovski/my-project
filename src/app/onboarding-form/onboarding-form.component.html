@@ -2,7 +2,7 @@
 <div class="container-sm" style="background-color: cornsilk; max-width: 75%;">
     <!-- Authentication/contact info details -->
     <div *ngIf="authenticationCompleted">
-        <form #form1="ngForm" (ngSubmit)="onSubmit(form1)">
+        <form #form1="ngForm" (ngSubmit)="onSubmit(form1, email, phone, embg)">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input 
@@ -10,11 +10,14 @@
                 name="email" 
                 type="email" 
                 placeholder="example@domain.com"
-                class="form-control" 
+                class="form-control inputField" 
                 [(ngModel)]="authenticationData.email"
                 [class.field-error]="form1.submitted && email.invalid"
                 required
                 pattern=".*@.*.com"
+                matTooltip = "{{emailTitle}}"
+                matTooltipPosition="right"
+                [matTooltipDisabled]="!form1.submitted || email.valid"
                 #email="ngModel">
             </div>
             <div class="form-group">
@@ -24,9 +27,12 @@
                 name="phone" 
                 type="tel" 
                 placeholder="07# ###-###"
-                class="form-control"
+                class="form-control inputField"
                 [(ngModel)]="authenticationData.phone"
                 pattern="07[0-9] [0-9][0-9][0-9]-[0-9][0-9][0-9]"
+                matTooltip = "{{phoneTitle}}"
+                matTooltipPosition="right"
+                [matTooltipDisabled]="!form1.submitted || phone.valid"
                 required
                 #phone="ngModel"
                 [class.field-error]="form1.submitted && phone.invalid">
@@ -38,9 +44,12 @@
                 name="embg" 
                 type="text" 
                 placeholder="ddmmyyyxxxyyy"
-                class="form-control"
+                class="form-control inputField"
                 [(ngModel)]="authenticationData.embg"
                 required
+                matTooltip = "{{embgTitle}}"
+                matTooltipPosition="right"
+                [matTooltipDisabled]="!form1.submitted || embg.valid"
                 minlength="13"
                 maxlength="13"
                 #embg="ngModel"
@@ -78,6 +87,8 @@
         <h3>section5</h3>
     </div>
 </div>
+
+
 
 
 <!-- <br> form values -->
