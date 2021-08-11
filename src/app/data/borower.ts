@@ -5,3 +5,8 @@ export interface Borower {
     embg: string,
     bankId: string
 }
+
+export interface Company {
+    name: string,
+    borower: string
+}

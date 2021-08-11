@@ -67,6 +67,8 @@
     <!-- Section #2:  -->
     <div *ngIf="section2">
         <h3>section2</h3>
+        Borower companies:
+        <div>{{companies}}</div>
         <div *ngIf="!section3">
             <button (click)="completeSection2()">continue</button>
         </div> 

@@ -23,6 +23,7 @@ export class OnboardingFormComponent implements OnInit {
 
   invalidUser:boolean = false;
   loggedUser: string ="";
+  companies: any[]=[];
 
 
   
@@ -53,10 +54,8 @@ export class OnboardingFormComponent implements OnInit {
         this.authenticationCompleted=!this.authenticationCompleted;
         this.section2=!this.section2;
         this.loggedUser=loggedUser;
+        this.companies=this.dataService.getCompaniesList(loggedUser);
       }
-
-
-
     } 
 
   }

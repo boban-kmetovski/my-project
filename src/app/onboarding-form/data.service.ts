@@ -1,29 +1,19 @@
 import { Injectable } from "@angular/core";
-import { Borower } from "../data/borower";
+import { Borower, Company } from "../data/borower";
+import { Data } from "../data/data";
 
 @Injectable({
     providedIn: "root"
 })
 
 export class DataService {
-  
-    borowerList: Borower[] = [
-        {
-            name: "Boban Kmetovski",
-            phone: "",
-            email: "",
-            embg: "0103987450014",
-            bankId: "1111" 
-        },
-        {
-            name: "Marija Kmetovska",
-            phone: "",
-            email: "",
-            embg: "1111987435003",
-            bankId: "2222"
-        }
-    ]
 
+    constructor(private data: Data){}
+
+    borowerList: Borower[] = this.data.getBorowers();
+    companyList: Company[] = this.data.getCompanies();
+    
+      
     getBorowerName(embg: string): string {
         let x: number = 0;
         let len: number = this.borowerList.length;
@@ -36,8 +26,23 @@ export class DataService {
             }
             x++;
         }
-
         return name;
+    }
+
+    getCompaniesList(borower: string): any[] {
+        let x: number = 0,
+            i: number =0,
+            len: number = this.companyList.length,
+            res: any[]=[];
+        
+        while(x<len){
+            if(this.companyList[x].borower==borower){
+                res[i]=this.companyList[x].name;
+                i++;
+            }
+            x++;
+        }
+        return res;
     }
 
 }
