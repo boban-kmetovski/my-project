@@ -66,9 +66,16 @@
     </div>
     <!-- Section #2:  -->
     <div *ngIf="section2">
-        <h3>section2</h3>
-        Borower companies:
-        <div>{{companies}}</div>
+        <div class="form-group">
+            <label for="company">Select Company</label>
+            <select class="form-select" 
+                    aria-label="Default select example" 
+                    id="company" 
+                    name="company" 
+                    [(ngModel)]="selectedCompany">
+              <option *ngFor="let company of companies">{{ company }}</option>
+            </select>
+        </div>
         <div *ngIf="!section3">
             <button (click)="completeSection2()">continue</button>
         </div> 

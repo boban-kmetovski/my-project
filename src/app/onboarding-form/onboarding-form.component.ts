@@ -24,7 +24,7 @@ export class OnboardingFormComponent implements OnInit {
   invalidUser:boolean = false;
   loggedUser: string ="";
   companies: any[]=[];
-
+  selectedCompany: string="";
 
   
   originalAuthenticationData: AuthenticationData = {
