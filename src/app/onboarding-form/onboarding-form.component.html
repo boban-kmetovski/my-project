@@ -55,12 +55,13 @@
                 #embg="ngModel"
                 [class.field-error]="form1.submitted && embg.invalid">
             </div>
+            <div *ngIf="invalidUser">User not found, please enter correct Personal number</div>
             <div *ngIf="form1.submitted && form1.invalid">Please input the fields marked with red</div>
             <button class="btn btn-primary">Ok</button>
         </form>
     </div>
     <div *ngIf="!authenticationCompleted">
-        <h4>User: <b>Boban Kmetovski</b></h4>
+        <h4>User: <b>{{loggedUser}}</b></h4>
         <h4>email: <b>{{authenticationData.email}}</b></h4>
     </div>
     <!-- Section #2:  -->

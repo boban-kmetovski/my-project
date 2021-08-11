@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { AuthenticationData } from '../data/authentication';
+import { DataService } from './data.service';
 
 
 @Component({
@@ -20,6 +21,9 @@ export class OnboardingFormComponent implements OnInit {
   phoneTitle = 'Please Enter a valid phone number "07# ###-###"';
   embgTitle = 'Please Enter a valid personal number "ddmmyyyxxxyyy"';
 
+  invalidUser:boolean = false;
+  loggedUser: string ="";
+
 
   
   originalAuthenticationData: AuthenticationData = {
@@ -30,10 +34,9 @@ export class OnboardingFormComponent implements OnInit {
 
   authenticationData: AuthenticationData = {...this.originalAuthenticationData};
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(form: NgForm, email: NgModel, phone: NgModel, embg: NgModel): void {
 
@@ -42,8 +45,18 @@ export class OnboardingFormComponent implements OnInit {
     if(embg.invalid) {this.authenticationData.embg=this.originalAuthenticationData.embg}
 
     if (form.valid) {
-      this.authenticationCompleted=!this.authenticationCompleted;
-      this.section2=!this.section2;
+      let loggedUser=this.dataService.getBorowerName(embg.value);
+      if (loggedUser=="not found"){
+        this.authenticationData.embg=this.originalAuthenticationData.embg;
+        this.invalidUser=true;
+      } else {
+        this.authenticationCompleted=!this.authenticationCompleted;
+        this.section2=!this.section2;
+        this.loggedUser=loggedUser;
+      }
+
+
+
     } 
 
   }
